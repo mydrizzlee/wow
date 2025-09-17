@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>曼波语音</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    
+    <!-- 配置Tailwind自定义颜色和字体 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3B82F6',
+                        secondary: '#10B981',
+                        accent1: '#F59E0B',
+                        accent2: '#8B5CF6',
+                        accent3: '#EC4899',
+                        accent4: '#EF4444',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .btn-hover {
+                @apply transform transition-all duration-300 hover:scale-105 hover:shadow-lg active:scale-95;
+            }
+            .audio-btn {
+                @apply flex flex-col items-center justify-center rounded-xl p-6 text-white font-bold text-lg cursor-pointer btn-hover;
+            }
+            .key-press {
+                @apply scale-90 shadow-2xl;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col">
+    <!-- 页面标题 -->
+    <header class="bg-gradient-to-r from-primary to-secondary text-white py-8 px-4 shadow-md">
+        <div class="container mx-auto text-center">
+            <h1 class="text-[clamp(1.8rem,4vw,2.8rem)] font-bold mb-2">曼波语音</h1>
+            <p class="text-sm md:text-base opacity-90">提示：可使用小键盘数字1-6触发对应音频</p>
+        </div>
+    </header>
+
+    <!-- 主内容区 - 音频按钮网格 -->
+    <main class="flex-grow container mx-auto px-4 py-12">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            <!-- 音频按钮 1（绑定小键盘1） -->
+            <div class="audio-btn bg-primary group" data-audio="audio1" data-key="1">
+                <i class="fa fa-volume-up text-4xl mb-3 group-hover:animate-pulse"></i>
+                <span>Duang</span>
+                <div class="text-xs mt-2 opacity-80">小键盘 1</div>
+                <audio id="audio1" preload="auto">
+                    <source src="Duang.m4a" type="audio/mpeg">
+                    您的浏览器不支持音频播放
+                </audio>
+            </div>
+
+            <!-- 音频按钮 2（绑定小键盘2） -->
+            <div class="audio-btn bg-secondary group" data-audio="audio2" data-key="2">
+                <i class="fa fa-volume-up text-4xl mb-3 group-hover:animate-pulse"></i>
+                <span>hehehe</span>
+                <div class="text-xs mt-2 opacity-80">小键盘 2</div>
+                <audio id="audio2" preload="auto">
+                    <source src="./hehehe.m4a" type="audio/mpeg">
+                    您的浏览器不支持音频播放
+                
+            </div>
+
+            <!-- 音频按钮 3（绑定小键盘3） -->
+            <div class="audio-btn bg-accent1 group" data-audio="audio3" data-key="3">
+                <i class="fa fa-volume-up text-4xl mb-3 group-hover:animate-pulse"></i>
+                <span>wow</span>
+                <div class="text-xs mt-2 opacity-80">小键盘 3</div>
+                <audio id="audio3" preload="auto">
+                    <source src="wow.m4a" type="audio/mpeg">
+                    您的浏览器不支持音频播放
+                
+            </div>
+
+            <!-- 音频按钮 4（绑定小键盘4） -->
+            <div class="audio-btn bg-accent2 group" data-audio="audio4" data-key="4">
+                <i class="fa fa-volume-up text-4xl mb-3 group-hover:animate-pulse"></i>
+                <span>哦也</span>
+                <div class="text-xs mt-2 opacity-80">小键盘 4</div>
+                <audio id="audio4" preload="auto">
+                    <source src="哦也.m4a" type="audio/mpeg">
+                    您的浏览器不支持音频播放
+                
+            </div>
+
+            <!-- 音频按钮 5（绑定小键盘5） -->
+            <div class="audio-btn bg-accent3 group" data-audio="audio5" data-key="5">
+                <i class="fa fa-volume-up text-4xl mb-3 group-hover:animate-pulse"></i>
+                <span>曼波</span>
+                <div class="text-xs mt-2 opacity-80">小键盘 5</div>
+                <audio id="audio5" preload="auto">
+                    <source src="曼波.m4a" type="audio/mpeg">
+                    您的浏览器不支持音频播放
+                
+            </div>
+
+            <!-- 音频按钮 6（绑定小键盘6） -->
+            <div class="audio-btn bg-accent4 group" data-audio="audio6" data-key="6">
+                <i class="fa fa-volume-up text-4xl mb-3 group-hover:animate-pulse"></i>
+                <span>阿米诺斯</span>
+                <div class="text-xs mt-2 opacity-80">小键盘 6</div>
+                <audio id="audio6" preload="auto">
+                    <source src="阿米诺斯.m4a" type="audio/mpeg">
+                    您的浏览器不支持音频播放
+                <RichMediaReference>
+            </div>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-gray-800 text-white py-6 px-4">
+        <div class="container mx-auto text-center text-gray-400">
+            <p>音频播放器 &copy; 2023</p>
+        </div>
+    </footer>
+
+    <script>
+        // 等待DOM加载完成
+        document.addEventListener('DOMContentLoaded', () => {
+            // 获取所有音频按钮
+            const audioButtons = document.querySelectorAll('.audio-btn');
+            
+            // 播放音频的通用函数
+            function playAudio(button) {
+                const audioId = button.getAttribute('data-audio');
+                const audioElement = document.getElementById(audioId);
+                
+                // 重置并播放音频
+                audioElement.currentTime = 0;
+                audioElement.play().catch(error => {
+                    console.error('播放失败:', error);
+                    alert('音频播放失败，请先点击页面任意位置激活音频权限');
+                });
+                
+                // 添加按键反馈动画
+                button.classList.add('key-press');
+                setTimeout(() => {
+                    button.classList.remove('key-press');
+                }, 300);
+            }
+            
+            // 为每个按钮添加点击事件
+            audioButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    playAudio(this);
+                });
+            });
+            
+            // 键盘事件监听（小键盘1-6）
+            document.addEventListener('keydown', (e) => {
+                // 小键盘1-6的keyCode是97-102
+                if (e.keyCode >= 97 && e.keyCode <= 102) {
+                    // 计算对应的数字（1-6）
+                    const key = (e.keyCode - 96).toString();
+                    // 找到对应的按钮
+                    const targetButton = document.querySelector(`.audio-btn[data-key="${key}"]`);
+                    if (targetButton) {
+                        e.preventDefault(); // 阻止默认行为（如页面滚动）
+                        playAudio(targetButton);
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
